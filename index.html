@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartCook – Vaše inteligentní kuchyně</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2D6A4F">
+  <meta name="description" content="SmartCook – Vaše inteligentní kuchyně. Najděte recepty podle ingrediencí, nutričních hodnot nebo názvu.">
+  <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+
+  
+  <div id="notif" class="notif" role="alert" aria-live="polite"></div>
+
+
+  <nav>
+    <a class="brand" href="#" onclick="tab('search'); return false;" aria-label="SmartCook – domů">
+      <span class="brand-name">Smart<em>Cook</em></span>
+    </a>
+    <div class="nav-tabs" id="nav-tabs" role="navigation" aria-label="Hlavní navigace">
+      <button class="nt active" data-tab="search"    aria-label="Hledat recepty">🔍 Hledat</button>
+      <button class="nt"        data-tab="favorites" aria-label="Oblíbené recepty">❤️ Oblíbené</button>
+      <button class="nt"        data-tab="audit"     aria-label="Audit ledničky">🧊 Lednička</button>
+    </div>
+    <button class="nav-menu-btn" id="menu-btn" aria-label="Otevřít menu" aria-expanded="false" aria-controls="nav-tabs">☰</button>
+  </nav>
+
+
+  <main id="search" class="page" role="main">
+    <div class="hero">
+      <h1>Vař chytře,<br>vař <em>s tím, co máš</em></h1>
+      <p>Vyber ingredience, zadej nutriční cíle nebo název receptu</p>
+    </div>
+
+
+    <div class="mode-pills" role="tablist" aria-label="Režim hledání">
+      <button class="mp active" data-mode="ing"   role="tab" aria-selected="true"  aria-controls="mode-ing">🥕 Podle ingrediencí</button>
+      <button class="mp"        data-mode="nutri" role="tab" aria-selected="false" aria-controls="mode-nutri">⚡ Podle nutricí</button>
+      <button class="mp"        data-mode="name"  role="tab" aria-selected="false" aria-controls="mode-name">📝 Podle názvu</button>
+    </div>
+
+ 
+    <div id="mode-ing" class="mode-panel" role="tabpanel">
+      <div class="search-wrap">
+        <input type="search" id="ing-search" placeholder="Hledat ingredienci…" aria-label="Hledat ingredienci">
+        <span class="search-ico" aria-hidden="true">🔍</span>
+      </div>
+
+      <div class="cat-tabs" id="cat-tabs" role="group" aria-label="Kategorie ingrediencí"></div>
+
+      <div id="ingredient-grid" role="list" aria-label="Ingredience"></div>
+
+      <div class="sel-bar" aria-label="Vybrané ingredience">
+        <div class="sel-chips" id="chips" aria-live="polite">
+          <span class="sel-hint">Nic nevybráno</span>
+        </div>
+        <div class="sel-actions">
+          <button class="btn-ghost" id="clear-btn" aria-label="Odebrat všechny ingredience">Vymazat vše</button>
+          <button class="btn btn-primary" id="find-btn" disabled aria-label="Najít recepty">Najít recepty →</button>
+        </div>
+      </div>
+    </div>
+
+  
+    <div id="mode-nutri" class="mode-panel hidden" role="tabpanel">
+      <div class="panel">
+        <h3>Nutriční filtry</h3>
+        <p class="psub">Nastav rozsahy a najdi recepty podle makronutrientů</p>
+        <div class="nutri-grid">
+          <div class="nf">
+            <label for="min-cal">Min. kalorie (kcal)</label>
+            <input type="number" id="min-cal" placeholder="0" min="0">
+          </div>
+          <div class="nf">
+            <label for="max-cal">Max. kalorie (kcal)</label>
+            <input type="number" id="max-cal" placeholder="2000" min="0">
+          </div>
+          <div class="nf">
+            <label for="min-prot">Min. bílkoviny (g)</label>
+            <input type="number" id="min-prot" placeholder="0" min="0">
+          </div>
+          <div class="nf">
+            <label for="max-fat">Max. tuky (g)</label>
+            <input type="number" id="max-fat" placeholder="100" min="0">
+          </div>
+          <div class="nf">
+            <label for="num-res">Počet výsledků</label>
+            <select id="num-res" aria-label="Počet výsledků">
+              <option value="6">6</option>
+              <option value="12" selected>12</option>
+              <option value="18">18</option>
+              <option value="24">24</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="find-nutri-btn">Najít recepty →</button>
+      </div>
+    </div>
+
+  
+    <div id="mode-name" class="mode-panel hidden" role="tabpanel">
+      <div class="panel">
+        <h3>Hledat podle názvu</h3>
+        <p class="psub">Zadej název receptu nebo klíčové slovo</p>
+        <div class="name-search-row">
+          <input type="text" id="name-q" placeholder="např. svíčková, pasta, salát…" aria-label="Název receptu">
+          <div class="nf">
+            <label for="cuisine">Kuchyně</label>
+            <select id="cuisine" aria-label="Typ kuchyně">
+              <option value="">Jakákoliv</option>
+              <option value="italian">Italská</option>
+              <option value="czech">Česká</option>
+              <option value="french">Francouzská</option>
+              <option value="asian">Asijská</option>
+              <option value="mexican">Mexická</option>
+              <option value="mediterranean">Středomořská</option>
+              <option value="american">Americká</option>
+            </select>
+          </div>
+          <div class="nf">
+            <label for="mealtype">Typ jídla</label>
+            <select id="mealtype" aria-label="Typ jídla">
+              <option value="">Jakýkoliv</option>
+              <option value="breakfast">Snídaně</option>
+              <option value="main course">Hlavní chod</option>
+              <option value="side dish">Příloha</option>
+              <option value="dessert">Dezert</option>
+              <option value="salad">Salát</option>
+              <option value="soup">Polévka</option>
+              <option value="snack">Svačina</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" id="find-name-btn">Hledat →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+ 
+  <section id="results" class="page hidden" aria-label="Výsledky hledání">
+    <button class="back-btn" id="results-back" aria-label="Zpět">← Zpět</button>
+    <div class="results-header">
+      <h2 class="serif" id="results-title">Výsledky</h2>
+      <span id="results-meta" aria-live="polite"></span>
+    </div>
+    <div class="card-grid" id="results-grid" role="list"></div>
+  </section>
+
+  <section id="detail" class="page hidden" aria-label="Detail receptu">
+    <button class="back-btn" id="detail-back-btn" aria-label="Zpět na výsledky">← Zpět</button>
+    <div id="detail-content" aria-live="polite"></div>
+  </section>
+
+  <section id="favorites" class="page hidden" aria-label="Oblíbené recepty">
+    <div class="hero">
+      <h1>Vaše <em>oblíbené</em></h1>
+      <p>Recepty, které jste si uložili</p>
+    </div>
+    <div class="card-grid" id="fav-grid" role="list"></div>
+  </section>
+
+  <section id="audit" class="page hidden" aria-label="Audit ledničky">
+    <div class="hero">
+      <h1>Audit <em>ledničky</em></h1>
+      <p>Přidej co brzy vyprší a najdi recepty, které to zachrání</p>
+    </div>
+
+    <div class="audit-card">
+      <div class="audit-card-head">
+        <div class="audit-icon" aria-hidden="true">⏰</div>
+        <div>
+          <div class="audit-title">Ingredience s expirací</div>
+          <p class="audit-desc">Přidej ingredience a počet dní do expirace. Systém navrhne recepty, aby nic nevyšlo nazmar.</p>
+        </div>
+      </div>
+
+      <div class="add-row" role="group" aria-label="Přidat ingredienci s expirací">
+        <select id="exp-ing" aria-label="Vyberte ingredienci">
+          <option value="">-- Vyber ingredienci --</option>
+        </select>
+        <input type="number" id="exp-days" placeholder="Dní do expirace" min="0" max="365" aria-label="Počet dní do expirace">
+        <button class="btn btn-primary btn-sm" id="add-expiry-btn" aria-label="Přidat ingredienci">+ Přidat</button>
+      </div>
+
+      <div class="urgency-legend" aria-label="Legenda urgentnosti">
+        <span><span class="dot red" aria-hidden="true"></span>0–2 dny (kritické)</span>
+        <span><span class="dot amber" aria-hidden="true"></span>3–5 dní (brzy)</span>
+        <span><span class="dot green" aria-hidden="true"></span>6+ dní (ok)</span>
+      </div>
+
+      <div class="audit-items" id="audit-items" role="list" aria-label="Seznam ingrediencí s expirací">
+        <p class="audit-empty">Žádné ingredience. Přidej co máš v lednici ↑</p>
+      </div>
+
+      <div class="audit-actions">
+        <button class="btn btn-primary" id="audit-find-btn" disabled aria-label="Najít záchranné recepty">🚨 Zachraň ingredience</button>
+        <button class="btn-ghost" id="clear-audit-btn" aria-label="Vymazat všechny ingredience">Vymazat vše</button>
+      </div>
+    </div>
+
+    <div id="audit-results" aria-live="polite"></div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

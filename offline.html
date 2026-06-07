@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartCook – Offline</title>
+  <style>
+    :root {
+      --green: #2D6A4F;
+      --bg: #FDFAF6;
+      --text: #1C1410;
+      --t2: #7A6E64;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .container { max-width: 400px; }
+    .icon { font-size: 4rem; margin-bottom: 1.5rem; display: block; }
+    h1 {
+      font-family: Georgia, serif;
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+    h1 em { color: var(--green); font-style: italic; }
+    p { color: var(--t2); line-height: 1.6; margin-bottom: 1.5rem; }
+    button {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    button:hover { background: #234f3a; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <span class="icon">📡</span>
+    <h1>Jste <em>offline</em></h1>
+    <p>SmartCook potřebuje připojení k internetu pro načítání receptů. Zkontrolujte své připojení a zkuste to znovu.</p>
+    <button onclick="window.location.reload()">Zkusit znovu</button>
+  </div>
+</body>
+</html>
