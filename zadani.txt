@@ -1,0 +1,9 @@
+Vytvořte webovou aplikaci s využitím JavaScriptu. Projekt je primárně zaměřen na práci s tímto jazykem, nicméně při hodnocení bude zohledněna také kvalita zpracování HTML a CSS. Webová stránka musí dynamicky upravovat svůj obsah pomocí JavaScriptu, a to jak na základě načítání dat z úložiště, tak na základě uživatelského vstupu.
+
+Jednou z podmínek je, aby aplikace ukládala data alespoň lokálně, například pomocí localStorage nebo sessionStorage (nebo cookies). Dalším požadavkem je komunikace s backendem prostřednictvím REST API. Pro splnění této části si můžete vybrat mezi využitím veřejně dostupného API, které bude vhodné pro váš projekt, nebo vytvořením vlastního backendu. Backend si můžete vytvořit sami (například s pomocí AI), případně vám jej mohu vytvořit já. V takovém případě je nutné dodat návrh datové struktury a konkrétní seznam endpointů. Na vytvoření backendu si vyhrazuji až jeden týden, i když předpokládám, že bude hotový dříve. Zároveň si vyhrazuji právo návrh odmítnout, pokud nebude dávat smysl. Posledním podmínkou je tvorba PWA pro vaši webovou aplikaci.
+
+Každý student si vytvoří vlastní zadání projektu, které musí být schváleno vyučujícím. Toto zadání bude součástí odevzdané dokumentace. Při jeho tvorbě se zaměřte nejen na samotnou funkcionalitu, ale také na návrh designu webové stránky a především na smysluplný use-case, tedy reálné využití aplikace v praxi. Ideální je, pokud bude mít projekt potenciál pro další rozšíření.
+
+Hodnocení projektu bude z 80 % založeno na práci s JavaScriptem, zbývajících 20 % připadá na HTML a CSS. Webová stránka proto musí být správně strukturovaná a zároveň responzivní, aby byla použitelná na různých typech zařízení.
+
+Hotová aplikace bude nasazena na školní hosting, přičemž postup nasazení si ukážeme během června. Odevzdání probíhá formou odkazu na funkční webovou aplikaci a zároveň odkazu na GitHub repozitář, ve kterém bude uložen zdrojový kód projektu.
