@@ -1,42 +1,29 @@
-1. Účel aplikace
-Aplikace SmartCook je inteligentní kuchyňský asistent. Jejím hlavním účelem je pomoci uživatelům najít recepty na základě surovin, které mají právě k dispozici, nebo podle preferovaných nutričních hodnot. Cílem je minimalizovat plýtvání potravinami a usnadnit plánování jídelníčku.
+# SmartCook
 
-2. Struktura projektu
-Projekt je rozdělen do následujících souborů:
+Aplikace pro inteligentní správu surovin a vyhledávání receptů.
 
-index.html: Hlavní struktura aplikace
+## 1. Účel aplikace
+Aplikace SmartCook pomáhá uživatelům efektivně využívat suroviny v domácnosti. Umožňuje vyhledávat recepty podle surovin, které mají k dispozici, nebo podle nutričních hodnot, čímž minimalizuje plýtvání potravinami.
 
-style.css: Styly pro moderní a responzivní design.
+## 2. Struktura projektu
+- `index.html`: Hlavní HTML struktura aplikace.
+- `style.css`: Styly pro responzivní design.
+- `app.js`: Logika aplikace, komunikace s API a PWA registrace.
+- `sw.js`: Service Worker pro offline dostupnost.
+- `manifest.json`: Konfigurace PWA.
+- `offline.html`: Stránka pro režim offline.
+- `logo.png`: Ikona aplikace.
 
-app.js: Logika aplikace, asynchronní volání API.
+## 3. Princip fungování
+Aplikace využívá asynchronní volání Spoonacular API. Uživatel vybere suroviny, které jsou následně odeslány na server. Výsledky jsou dynamicky vykresleny jako karty. Funkce "Audit ledničky" hlídá expiraci a navrhuje recepty pro okamžité zpracování surovin.
 
-sw.js: Service Worker zajišťující offline dostupnost.
 
-manifest.json: Web App Manifest definující instalovatelnost aplikace (PWA).
 
-offline.html: Stránka zobrazená uživateli při ztrátě připojení.
+## 4. API Endpoints
+- `GET /recipes/findByIngredients`: Vyhledání receptů podle ingrediencí.
+- `GET /recipes/findByNutrients`: Vyhledání receptů podle kalorií a bílkovin.
+- `GET /recipes/complexSearch`: Hledání podle názvu a typu jídla.
+- `GET /recipes/{id}/information`: Detail receptu.
 
-3. Princip fungování
-Aplikace funguje na principu klientského zpracování dat a komunikace s externím API:
-
-Výběr surovin: Uživatel si v rozhraní vybere ingredience, které má v lednici.
-
-Komunikace s API: Po stisknutí tlačítka pro vyhledání odešle app.js asynchronní požadavek (fetch) na Spoonacular API.
-
-Zpracování odpovědi: API vrátí seznam receptů, které aplikace následně transformuje na HTML karty a zobrazí uživateli.
-
-Audit ledničky: Uživatel může ke každé surovině zadat počet dní do expirace. Aplikace následně doporučí recepty, které suroviny využijí dříve, než se zkazí.
-
-4. API Endpoints
-Aplikace využívá tyto endpointy rozhraní Spoonacular API:
-
-GET /recipes/findByIngredients: Vyhledávání receptů podle seznamu surovin.
-
-GET /recipes/findByNutrients: Vyhledávání receptů dle zadaného rozmezí kalorií a bílkovin.
-
-GET /recipes/complexSearch: Fulltextové vyhledávání dle názvu, kuchyně nebo typu jídla.
-
-GET /recipes/{id}/information: Načtení detailních informací o konkrétním receptu.
-
-5. Možnost instalace
-Aplikaci je možné nainstalovat do mobilního nebo stolního zařízení jako PWA.
+## 5. Instalace
+Aplikaci lze nainstalovat do zařízení jako PWA pomocí volby „Přidat na plochu“ v menu prohlížeče.
